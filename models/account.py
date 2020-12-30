@@ -181,8 +181,10 @@ class AccountMove(models.Model):
         Pais.text = factura.partner_id.country_id.code or 'GT'
 
         if tipo_documento_fel not in ['NDEB', 'NCRE', 'RECI', 'NABN', 'FESP']:
-            ElementoFrases = etree.fromstring(factura.company_id.frases_fel)
-            DatosEmision.append(ElementoFrases)
+            #ElementoFrases = etree.fromstring(factura.company_id.frases_fel)
+            #DatosEmision.append(ElementoFrases)
+            Frases = etree.SubElement(DatosEmision, DTE_NS+"Frases")
+            Frase = etree.SubElement(Frases, DTE_NS+"Frase", CodigoEscenario="1", TipoFrase="1")
 
         Items = etree.SubElement(DatosEmision, DTE_NS+"Items")
 
